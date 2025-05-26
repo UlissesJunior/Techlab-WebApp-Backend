@@ -24,18 +24,23 @@ export class TransactionService {
     let accountOrigin: Account | null = null;
     let accountDestination: Account | null = null;
 
-    if (type === 'DEBIT' || type === 'TRANSFER') {
-      if (!accountOriginId) throw new BadRequestException('Conta de origem obrigatória');
+    if (type === 'DEBITO' || type === 'TRANSFERENCIA') {
+      if (!accountOriginId) throw new BadRequestException('accountOriginId is required');
       accountOrigin = await this.accountsRepository.findOne({ where: { id: accountOriginId } });
-      if (!accountOrigin) throw new BadRequestException('Conta de origem não encontrada');
+      if (!accountOrigin) throw new BadRequestException('accountOrigin not found');
+      if (amount <= 0) throw new BadRequestException('amount should be greater than 0');
+      if (accountOrigin.balance < amount) {
+        throw new BadRequestException('accountOrigin.balance should be greater than or equal to amount');
+      }
       accountOrigin.balance -= amount;
       await this.accountsRepository.save(accountOrigin);
     }
 
-    if (type === 'CREDIT' || type === 'TRANSFER') {
-      if (!accountDestinationId) throw new BadRequestException('Conta de destino obrigatória');
+    if (type === 'CREDITO' || type === 'TRANSFERENCIA') {
+      if (!accountDestinationId) throw new BadRequestException('accountDestinationId is required');
       accountDestination = await this.accountsRepository.findOne({ where: { id: accountDestinationId } });
-      if (!accountDestination) throw new BadRequestException('Conta de destino não encontrada');
+      if (!accountDestination) throw new BadRequestException('accountDestination not found');
+      if (amount <= 0) throw new BadRequestException('amount should be greater than 0');
       accountDestination.balance += amount;
       await this.accountsRepository.save(accountDestination);
     }

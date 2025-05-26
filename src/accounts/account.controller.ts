@@ -5,16 +5,21 @@ import { UpdateAccountDto } from './dto/update-account.dto';
 import { Request } from 'express';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { User } from '../users/entities/user.entity';
+import { AccountValidationUtils } from './utils/account-validation.utils';
 
 @UseGuards(JwtAuthGuard)
 @Controller('accounts')
 export class AccountController {
-  constructor(private readonly accountService: AccountService) { }
+  private readonly accountValidationUtils = AccountValidationUtils;
+  constructor(private readonly accountService: AccountService) {}
 
   @Post()
   async create(@Body() dto: CreateAccountDto, @Req() req: Request & { user: User }) {
-    console.log('Req user:', req.user);
-    console.log('DTO:', dto);
+    this.accountValidationUtils.validateAccountType({ type: dto.type });
+    const validationError = this.accountValidationUtils.validateAccountType({ type: dto.type });
+    if (validationError) {
+      throw validationError;
+    }
     const user = req.user;
     return this.accountService.create(dto.name, dto.type, user, dto.balance ?? 0);
   }
@@ -31,6 +36,13 @@ export class AccountController {
     @Body() dto: UpdateAccountDto,
     @Req() req: Request & { user: User },
   ) {
+    if(dto.type) {
+      this.accountValidationUtils.validateAccountType({ type: dto.type });
+      const validationError = this.accountValidationUtils.validateAccountType({ type: dto.type });
+      if (validationError) {
+        throw validationError;
+      }
+    }
     const user = req.user;
     return this.accountService.update(id, user, dto);
   }

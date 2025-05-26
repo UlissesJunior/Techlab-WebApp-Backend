@@ -1,4 +1,4 @@
-import { IsOptional, IsEnum, IsNumber, IsString } from 'class-validator';
+import { IsOptional, IsNumber, IsString } from 'class-validator';
 import { AccountType } from '../entities/account.entity';
 
 export class UpdateAccountDto {
