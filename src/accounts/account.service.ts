@@ -9,10 +9,9 @@ export class AccountService {
   constructor(
     @InjectRepository(Account)
     private accountsRepository: Repository<Account>,
-  ) {}
+  ) { }
 
   async create(name: string, type: AccountType, user: User, balance = 0): Promise<Account> {
-    console.log('Creating account:', { name, type, user, balance });
     const account = this.accountsRepository.create({ name, type, balance, user });
     return this.accountsRepository.save(account);
   }
