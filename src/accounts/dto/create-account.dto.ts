@@ -1,8 +1,9 @@
-import { IsNotEmpty, IsEnum, IsOptional, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsNumber, IsString } from 'class-validator';
 import { AccountType } from '../entities/account.entity';
 
 export class CreateAccountDto {
   @IsNotEmpty()
+  @IsString()
   name: string;
 
   @IsString()

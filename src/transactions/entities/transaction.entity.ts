@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn } from 'typeorm';
 import { Account } from '../../accounts/entities/account.entity';
 
-export type TransactionType = 'DEBIT' | 'CREDIT' | 'TRANSFER';
+export type TransactionType = 'DEBITO' | 'CREDITO' | 'TRANSFERENCIA';
 
   @Entity()
   export class Transaction {

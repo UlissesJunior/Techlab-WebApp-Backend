@@ -4,14 +4,22 @@ import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { Request } from 'express';
 import { AuthenticatedUser } from 'src/auth/auth.interface';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { TransactionValidationUtils } from './utils/transaction-validation.utils';
 
 @UseGuards(JwtAuthGuard)
 @Controller('transactions')
 export class TransactionController {
+  private readonly transactionValidation = TransactionValidationUtils; 
   constructor(private readonly transactionService: TransactionService) { }
 
+  
   @Post()
   async create(@Body() dto: CreateTransactionDto) {
+    const validationError = this.transactionValidation.validateTransactionType({ type: dto.type });
+    if (validationError) {
+      throw validationError;
+    }
+    
     return this.transactionService.create(
       dto.type,
       dto.amount,
