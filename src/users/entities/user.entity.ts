@@ -17,6 +17,10 @@ export class User {
   @Exclude() 
   passwordHash: string;
 
+  @Column({ type: 'text', nullable: true })
+  
+  photo?: string;
+
   @OneToMany(() => Account, account => account.user)
   accounts: Account[];
 }
