@@ -20,6 +20,7 @@ export class TransactionService {
     accountOriginId?: string,
     accountDestinationId?: string,
     description?: string,
+    date?: Date,
   ): Promise<Transaction> {
     let accountOrigin: Account | null = null;
     let accountDestination: Account | null = null;
@@ -51,6 +52,7 @@ export class TransactionService {
       description,
       accountOrigin,
       accountDestination,
+      date: date || new Date(),
     } as Transaction);
 
     return this.transactionsRepository.save(transaction);
