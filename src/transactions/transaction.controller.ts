@@ -25,7 +25,8 @@ export class TransactionController {
       dto.amount,
       dto.accountOriginId,
       dto.accountDestinationId,
-      dto.description
+      dto.description,
+      dto.date
     );
   }
 

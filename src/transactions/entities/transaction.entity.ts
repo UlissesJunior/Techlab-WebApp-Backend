@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn } from 'typeorm';
 import { Account } from '../../accounts/entities/account.entity';
+import { IsOptional } from 'class-validator';
 
 export type TransactionType = 'DEBITO' | 'CREDITO' | 'TRANSFERENCIA';
 
@@ -23,6 +24,9 @@ export type TransactionType = 'DEBITO' | 'CREDITO' | 'TRANSFERENCIA';
     @Column({ nullable: true })
     description: string;
 
-    @CreateDateColumn()
+    @Column({ type: 'datetime', nullable: true })
     date: Date;
+
+    @CreateDateColumn()
+    createdAt: Date;
   }
