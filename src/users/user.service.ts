@@ -32,4 +32,13 @@ export class UserService {
     user.photo = base64Photo;
     await this.usersRepository.save(user);
   }
+
+  async getPhotoById(id: string): Promise<string | null> {
+    const user = await this.usersRepository.findOne({
+      where: { id }
+    });
+    console.log("GETPHOTO")
+    console.log(user)
+    return user?.photo ?? null;
+  }  
 }
