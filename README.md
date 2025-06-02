@@ -1,98 +1,198 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+<h1  align="center">
+💲<br>Tech4Humans Finance - WebApp para gestão financeira
+</h1>
 
-## Description
+Bem-vindo ao repositório do backend do projeto *Tech4Humans Finance*, um webApp desenvolvido para gerenciar finanças pessoais. Este projeto é parte de um teste técnico para uma vaga como desenvolvedor na Tech4Humans.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+---
 
-## Project setup
+## Sumário
 
-```bash
-$ npm install
+1. [Introdução e Visão Geral](#introdução-e-visão-geral)
+
+2. [Tecnologias e Dependências Utilizadas](#tecnologias-e-dependências-utilizadas)
+
+3. [Estrutura do Projeto](#estrutura-do-projeto)
+
+4. [Documentação das rotas](#documentação-das-rotas)
+
+5. [Como Executar o Projeto](#como-executar-o-projeto)
+
+---
+
+## Introdução e Visão Geral
+
+O backend do Tech4Humans Finance foi desenvolvido para fornecer todos os serviços necessários para o funcionamento do aplicativo web de gestão financeira. A API oferece:
+
+-   Autenticação segura de usuários com JWT
+    
+-   CRUD completo para contas bancárias
+    
+-   Gerenciamento de transações financeiras (débito, crédito e transferências)
+    
+-   Consultas com filtros
+    
+-   Validação de dados robusta
+    
+
+**Principais características técnicas:**
+
+-   Arquitetura limpa e modular
+    
+-   Validação de dados em todas as requisições
+    
+-   Tratamento centralizado de erros
+    
+-   Documentação completa das rotas
+    
+-   Testes unitários para os principais serviços
+ 
+## Tecnologias e Dependências Utilizadas
+
+Este projeto foi construído utilizando as seguintes tecnologias e bibliotecas:  
+
+*  **Nest JS:** Um framework super completo que roda o express por baixo dos panos, é muito escalável e é crucial na comunidade backend web. O nest possui uma arquitetura limpa e orientada a objetos com base em módulos, assim como o angular, o que o torna bem manutenível.
+  
+*  **Jest:** Para a implementação de **testes unitários** nas rotas e na lógica de negócio, garantindo a robustez e o correto funcionamento da aplicação.
+
+* **Sqlite3:** Um sistema de gerenciamento de banco de dados relacional leve e serverless. É ideal para projetos pequenos e médios, desenvolvimento local e testes, por não exigir um servidor de banco de dados separado.
+
+* **TypeORM:** Um Object-Relational Mapper (ORM) que permite trabalhar com bancos de dados relacionais utilizando objetos TypeScript/JavaScript. O TypeORM facilita a interação com o banco de dados, mapeando as entidades da aplicação para tabelas, o que torna as operações de CRUD (Create, Read, Update, Delete) mais intuitivas e menos propensas a erros de SQL.
+
+## **Estrutura do Projeto**
+
+A estrutura do projeto tem a seguinte estrutura (a partir do src):
+```
+src/
+├─ accounts/
+│  ├─ __tests__/
+│  │  ├─ account.controller.spec.ts
+│  │  └─ account.service.spec.ts
+│  ├─ dto/
+│  │  ├─ create-account.dto.ts
+│  │  └─ update-account.dto.ts
+│  ├─ entities/
+│  │  └─ account.entity.ts
+│  ├─ utils/
+│  │  └─ account-validation.utils.ts
+│  ├─ account.controller.ts
+│  ├─ account.module.ts
+│  └─ account.service.ts
+├─ auth/
+│  ├─ __tests__/
+│  │  ├─ auth.controller.spec.ts
+│  │  └─ auth.service.spec.ts
+│  ├─ auth.controller.ts
+│  ├─ auth.interface.ts
+│  ├─ auth.module.ts
+│  ├─ auth.service.ts
+│  ├─ current-user.decorator.ts
+│  ├─ jwt-auth.guard.ts
+│  └─ jwt.strategy.ts
+├─ common/
+│  ├─ interceptor/
+│  │  └─ transform.interceptor.ts
+│  └─ pipe/
+│     └─ global-validation.pipe.ts
+├─ transactions/
+│  ├─ __tests__/
+│  │  ├─ transaction.controller.spec.ts
+│  │  └─ transaction.service.spec.ts
+│  ├─ dto/
+│  │  └─ create-transaction.dto.ts
+│  ├─ entities/
+│  │  └─ transaction.entity.ts
+│  ├─ utils/
+│  │  └─ transaction-validation.utils.ts
+│  ├─ transaction.controller.ts
+│  ├─ transaction.module.ts
+│  └─ transaction.service.ts
+├─ users/
+│  ├─ __tests__/
+│  │  ├─ user.controller.spec.ts
+│  │  └─ user.service.spec.ts
+│  ├─ dto/
+│  │  ├─ create-user.dto.ts
+│  │  ├─ login-user.dto.ts
+│  │  └─ upload-photo.dto.ts
+│  ├─ entities/
+│  │  └─ user.entity.ts
+│  ├─ user.controller.ts
+│  ├─ user.module.ts
+│  └─ user.service.ts
+├─ app.module.ts
+└─ main.ts
+
 ```
 
-## Compile and run the project
+## Documentação das rotas
+
+As rotas estão contidas na collection do postman para teste no arquivo [Techlab.postman_collection.json](https://github.com/UlissesJunior/Techlab-WebApp-Backend/blob/main/Techlab.postman_collection.json)
+
+
+| Módulo       | Método | Endpoint               | Descrição                     |
+|--------------|--------|------------------------|-------------------------------|
+| Auth         | POST   | `/auth/login`          | Login de usuário              |
+| Users        | POST   | `/users`               | Criar novo usuário            |
+| Users        | POST   | `/users/:id/photo`     | Upload de foto                |
+| Accounts     | POST   | `/accounts`            | Criar nova conta              |
+| Accounts     | GET    | `/accounts`            | Listar contas do usuário      |
+| Transactions     | POST  | `/transactions`        | Criar transação               |
+| Transactions | GET    | `/transactions`        | Listar transações com filtros |
+
+## **Como Executar o Projeto**
+
+Para executar este projeto em seu ambiente de desenvolvimento local, siga os passos abaixo:
+
+### Pré-requisitos
+
+Certifique-se de ter as seguintes ferramentas instaladas:
+
+* Node.js (versão LTS recomendada)
+
+* npm
+
+* Git
+
+### 1. Clone o Repositório
+
+Abra seu terminal ou prompt de comando e execute:
 
 ```bash
-# development
-$ npm run start
 
-# watch mode
-$ npm run start:dev
+git clone github.com/UlissesJunior/Techlab-WebApp-Backend
 
-# production mode
-$ npm run start:prod
+cd Techlab-WebApp-Backend
+
 ```
 
-## Run tests
+### 2. Configuração e Execução
+
+Execute o comando a seguir para instalar as dependências necessárias.
 
 ```bash
-# unit tests
-$ npm run test
 
-# e2e tests
-$ npm run test:e2e
+npm install
 
-# test coverage
-$ npm run test:cov
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Para iniciar a aplicação React:
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+
+npm run start
+
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+A aplicação estará disponível em `http://localhost:8000`.
 
-## Resources
+Para rodar os testes:
 
-Check out a few resources that may come in handy when working with NestJS:
+```bash
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+npm run test
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+```
+Certifique-se de que o frontend esteja rodando junto ao backend.
