@@ -37,8 +37,6 @@ export class UserService {
     const user = await this.usersRepository.findOne({
       where: { id }
     });
-    console.log("GETPHOTO")
-    console.log(user)
     return user?.photo ?? null;
   }  
 }
